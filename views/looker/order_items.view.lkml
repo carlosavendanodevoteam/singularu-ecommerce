@@ -101,14 +101,6 @@ dimension: user_id {
   sql: ${TABLE}.user_id ;;
 }
 
-
-measure: average_sale_price {
-  type: average
-  sql: ${sale_price} ;;
-  drill_fields: [detail*]
-  value_format_name: usd_0
-}
-
 measure: order_item_count {
   type: count
   drill_fields: [detail*]
