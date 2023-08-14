@@ -11,38 +11,29 @@ view: distribution_centers {
     # A dimension is a groupable field that can be used to filter query results.
     # This dimension will be called "ID" in Explore.
 
-  dimension: id {
-    type: number
-    sql: ${TABLE}.id ;;
-  }
+ dimension: id {
+  primary_key: yes
+  type: number
+  sql: ${TABLE}.id ;;
+}
 
-  dimension: latitude {
-    type: number
-    sql: ${TABLE}.latitude ;;
-  }
+dimension: latitude {
+  type: number
+  sql: ${TABLE}.latitude ;;
+}
 
-  # A measure is a field that uses a SQL aggregate function. Here are defined sum and average
-  # measures for this dimension, but you can also add measures of many different aggregates.
-  # Click on the type parameter to see all the options in the Quick Help panel on the right.
+dimension: longitude {
+  type: number
+  sql: ${TABLE}.longitude ;;
+}
 
-  measure: total_latitude {
-    type: sum
-    sql: ${latitude} ;;  }
-  measure: average_latitude {
-    type: average
-    sql: ${latitude} ;;  }
+dimension: name {
+  type: string
+  sql: ${TABLE}.name ;;
+}
 
-  dimension: longitude {
-    type: number
-    sql: ${TABLE}.longitude ;;
-  }
-
-  dimension: name {
-    type: string
-    sql: ${TABLE}.name ;;
-  }
-  measure: count {
-    type: count
-    drill_fields: [name]
-  }
+measure: count {
+  type: count
+  drill_fields: [id, name, products.count]
+}
 }

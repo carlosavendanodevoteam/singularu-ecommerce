@@ -11,85 +11,116 @@ view: events {
     # A dimension is a groupable field that can be used to filter query results.
     # This dimension will be called "Browser" in Explore.
 
-  dimension: browser {
-    type: string
-    sql: ${TABLE}.browser ;;
-  }
+ dimension: id {
+  primary_key: yes
+  type: number
+  sql: ${TABLE}.id ;;
+}
 
-  dimension: city {
-    type: string
-    sql: ${TABLE}.city ;;
-  }
-  # Dates and timestamps can be represented in Looker using a dimension group of type: time.
-  # Looker converts dates and timestamps to the specified timeframes within the dimension group.
+dimension: ad_event_id {
+  type: number
+  # hidden: yes
+  sql: ${TABLE}.ad_event_id ;;
+}
 
-  dimension_group: created {
-    type: time
-    timeframes: [raw, time, date, week, month, quarter, year]
-    sql: ${TABLE}.created_at ;;
-  }
+dimension: browser {
+  type: string
+  sql: ${TABLE}.browser ;;
+}
 
-  dimension: event_type {
-    type: string
-    sql: ${TABLE}.event_type ;;
-  }
+dimension: city {
+  type: string
+  sql: ${TABLE}.city ;;
+}
 
-  dimension: id {
-    type: number
-    sql: ${TABLE}.id ;;
-  }
+dimension: country {
+  type: string
+  map_layer_name: countries
+  sql: ${TABLE}.country ;;
+}
 
-  dimension: ip_address {
-    type: string
-    sql: ${TABLE}.ip_address ;;
-  }
+dimension_group: created {
+  type: time
+  timeframes: [
+    raw,
+    time,
+    date,
+    week,
+    month,
+    quarter,
+    year
+  ]
+  sql: ${TABLE}.created_at ;;
+}
 
-  dimension: postal_code {
-    type: string
-    sql: ${TABLE}.postal_code ;;
-  }
+dimension: event_type {
+  type: string
+  sql: ${TABLE}.event_type ;;
+}
 
-  dimension: sequence_number {
-    type: number
-    sql: ${TABLE}.sequence_number ;;
-  }
+dimension: ip_address {
+  type: string
+  sql: ${TABLE}.ip_address ;;
+}
 
-  # A measure is a field that uses a SQL aggregate function. Here are defined sum and average
-  # measures for this dimension, but you can also add measures of many different aggregates.
-  # Click on the type parameter to see all the options in the Quick Help panel on the right.
+dimension: latitude {
+  type: number
+  sql: ${TABLE}.latitude ;;
+}
 
-  measure: total_sequence_number {
-    type: sum
-    sql: ${sequence_number} ;;  }
-  measure: average_sequence_number {
-    type: average
-    sql: ${sequence_number} ;;  }
+dimension: longitude {
+  type: number
+  sql: ${TABLE}.longitude ;;
+}
 
-  dimension: session_id {
-    type: string
-    sql: ${TABLE}.session_id ;;
-  }
+dimension: os {
+  type: string
+  sql: ${TABLE}.os ;;
+}
 
-  dimension: state {
-    type: string
-    sql: ${TABLE}.state ;;
-  }
+dimension: referrer_code {
+  type: string
+  sql: ${TABLE}.referrer_code ;;
+}
 
-  dimension: traffic_source {
-    type: string
-    sql: ${TABLE}.traffic_source ;;
-  }
+dimension: sequence_number {
+  type: number
+  sql: ${TABLE}.sequence_number ;;
+}
 
-  dimension: uri {
-    type: string
-    sql: ${TABLE}.uri ;;
-  }
+dimension: session_id {
+  type: string
+  sql: ${TABLE}.session_id ;;
+}
 
-  dimension: user_id {
-    type: number
-    sql: ${TABLE}.user_id ;;
-  }
-  measure: count {
-    type: count
-  }
+dimension: state {
+  type: string
+  sql: ${TABLE}.state ;;
+}
+
+dimension: traffic_source {
+  type: string
+  sql: ${TABLE}.traffic_source ;;
+}
+
+dimension: uri {
+  type: string
+  sql: ${TABLE}.uri ;;
+}
+
+dimension: user_id {
+  type: number
+  # hidden: yes
+  sql: ${TABLE}.user_id ;;
+}
+
+dimension: zip {
+  type: zipcode
+  sql: ${TABLE}.zip ;;
+}
+
+measure: count {
+  type: count
+  drill_fields: [id, ad_events.id, users.last_name, users.id, users.first_name]
+}
 }
