@@ -93,6 +93,16 @@ dimension: zip {
   sql: ${TABLE}.zip ;;
 }
 
+  dimension: is_email_source {
+    type: yesno
+    sql: ${traffic_source} = "Email" ;;
+  }
+
+  dimension: days_since_signup {
+    type: number
+    sql: DATE_DIFF(current_date(), ${created_date}, DAY);;
+  }
+
 measure: count {
   type: count
   drill_fields: [id, last_name, first_name, events.count, order_items.count]
