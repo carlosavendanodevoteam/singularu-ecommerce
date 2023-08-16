@@ -66,3 +66,5 @@ explore: order_items {
     relationship: many_to_one
   }
 }
+
+explore: add_a_unique_name_1692182415 {}
