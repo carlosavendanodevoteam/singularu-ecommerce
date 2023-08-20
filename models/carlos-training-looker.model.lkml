@@ -1,5 +1,5 @@
 # Define the database connection to be used for this model.
-connection: "carlos-looker-training"
+connection: "training-ecommerce"
 
 # include all the views
 include: "/views/**/*.view.lkml"
