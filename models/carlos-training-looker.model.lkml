@@ -36,7 +36,11 @@ explore: orders {}
 
 explore: events {}
 
-explore: users {}
+explore: users {
+  always_filter: {
+    filters: [age: "20"]
+    }
+}
 
 explore: view_name {}
 

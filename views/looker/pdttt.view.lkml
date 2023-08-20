@@ -10,7 +10,6 @@ view: view_name {
       column: age { field: users.age }
       column: count { field: users.count }
     }
-    datagroup_trigger: carlos-training-looker_default_datagroup
   }
   dimension: order_id {
     description: ""
