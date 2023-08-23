@@ -39,6 +39,11 @@ dimension: country {
     sql: ${traffic_source} = "Email";;
   }
 
+  dimension: days_since_singup {
+    type: number
+    sql: date_diff(current_date(), ${created_date},day);;
+  }
+
 dimension_group: created {
   type: time
   timeframes: [
