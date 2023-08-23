@@ -34,7 +34,6 @@ explore: distribution_centers {}
 
 explore: orders {}
 
-explore: events {}
 
 explore: users {
   always_filter: {
