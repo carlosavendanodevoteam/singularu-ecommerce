@@ -34,6 +34,15 @@ dimension: country {
 }
 
 
+
+  dimension: age_tier {
+    type: tier
+    tiers: [18,25,35,90]
+    sql: ${age}
+    ;;
+    style:integer
+  }
+
   dimension: is_email_source {
     type: yesno
     sql: ${traffic_source} = "Email";;
