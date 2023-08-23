@@ -33,6 +33,12 @@ dimension: country {
   sql: ${TABLE}.country ;;
 }
 
+
+  dimension: is_email_source {
+    type: yesno
+    sql: ${traffic_source} = "Email";;
+  }
+
 dimension_group: created {
   type: time
   timeframes: [
