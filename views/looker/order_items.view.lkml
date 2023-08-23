@@ -124,6 +124,11 @@ measure: total_revenue_from_completed_orders {
   value_format_name: usd
 }
 
+measure:  total_revenue_test{
+  type: sum
+  sql: ${sale_price} ;;
+}
+
 
 # ----- Sets of fields for drilling ------
 set: detail {
