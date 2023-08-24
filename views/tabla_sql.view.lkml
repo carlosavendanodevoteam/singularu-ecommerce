@@ -5,10 +5,9 @@ view: tabla_sql {
         order_items.order_id AS order_id
         ,order_items.user_id AS user_id
         ,COUNT(*) AS order_item_count
-        ,SUM(order_items.sale_price) AS order_revenue    
+        ,SUM(order_items.sale_price) AS order_revenue
       FROM carlos-avendano-sandbox.looker.order_items
-      GROUP BY order_id, user_id
-      LIMIT 10 ;;
+      GROUP BY order_id, user_id ;;
   }
 
   measure: count {
@@ -17,6 +16,7 @@ view: tabla_sql {
   }
 
   dimension: order_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.order_id ;;
   }
@@ -39,9 +39,9 @@ view: tabla_sql {
   set: detail {
     fields: [
         order_id,
-	user_id,
-	order_item_count,
-	order_revenue
+  user_id,
+  order_item_count,
+  order_revenue
     ]
   }
 }
